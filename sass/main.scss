@@ -1,0 +1,106 @@
+// colors
+$bg-color: #009cdf;
+$bg-color-linear:linear-gradient(to bottom, #0365a6, #459dd4);
+$triangle-front-color: #ffcd00;
+$triangle-center-color: #f88700;
+$triangle-back-color: #ffa800;
+$title-color: #fff;
+
+// fonts
+@import url(https://fonts.googleapis.com/css?family=Roboto:400,700);
+$roboto-font: 'Roboto', sans-serif;
+
+// mixin
+@mixin center {
+  display: flex;
+  justify-content: center;
+}
+
+@mixin pseudo($position: absolute, $content: "") {
+  content: $content;
+  position: $position;
+}
+
+@mixin reset() {
+  * {
+    &,
+    &::before,
+    &::after {
+      box-sizing: border-box;
+      display: block;
+    }
+  }
+  position: relative;
+  z-index: 1;
+}
+
+body {
+  @include center;
+  background: $bg-color;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  height: 100%;
+  padding-top: 5%;
+}
+
+.logo {
+  @include reset;
+  .triangle-front {
+    position: absolute;
+    left: -176.5px;
+    top: 68.4px;
+    z-index: 3;
+    border-bottom: 265px solid $triangle-front-color;
+    border-left: 275px solid transparent;
+    border-right: 45px solid transparent;
+    height: 0;
+    width: 0;
+    transform: rotate(0deg);
+    &::after {
+      @include pseudo;
+      top: 264.5px;
+      left: -275.5px;
+      width: 0;
+      height: 0;
+      border-left: 170px solid transparent;
+      border-right: 150.5px solid transparent;
+      border-top: 90px solid $triangle-front-color;
+    }
+  }
+  .triangle-center {
+    position: absolute;
+    left: -220px;
+    top: 62px;
+    z-index: 2;
+    border-bottom: 228px solid $triangle-center-color;
+    border-left: 248px solid transparent;
+    border-right: 70px solid transparent;
+    height: 0;
+    width: 0;
+    opacity: 0.8;
+    transform: rotate(-18deg);
+  }
+  .triangle-back {
+    position: absolute;
+    left: -255px;
+    top: -6px;
+    z-index: 1;
+    border-bottom: 300px solid $triangle-back-color;
+    border-left: 210px solid transparent;
+    border-right: 40px solid transparent;
+    height: 0;
+    width: 0;
+    transform: rotate(-26deg);
+  }
+}
+
+.title {
+  position: absolute;
+  h1 {
+    font-weight: 400;
+    color: $title-color;
+    font-family: $roboto-font;
+    font-size: 153px;
+    margin-top: 450px;
+  }
+}
